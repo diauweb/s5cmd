@@ -17,9 +17,14 @@ builds:
       - arm
       - arm64
       - ppc64le
+      - riscv64
     ignore:
       - goos: darwin
         goarch: 386
+      - goos: darwin
+        goarch: riscv64
+      - goos: windows
+        goarch: riscv64
 
 archives:
   - name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}-{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
