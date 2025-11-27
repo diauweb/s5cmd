@@ -17,9 +17,14 @@ builds:
       - arm
       - arm64
       - ppc64le
+      - riscv64
     ignore:
       - goos: darwin
         goarch: 386
+      - goos: darwin
+        goarch: riscv64
+      - goos: windows
+        goarch: riscv64
 
 archives:
   - name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}-{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
@@ -48,31 +53,9 @@ changelog:
       - Merge pull request
       - Merge branch
 
-brews:
-  - tap:
-      owner: peak
-      name: homebrew-tap
-    folder: Formula
-    name: s5cmd
-    description: Parallel S3 and local filesystem execution tool
-    homepage: https://github.com/peak/s5cmd
-    license: MIT
-    test: |
-      system "#{bin}/s5cmd version"
-
-nfpms:
-  -
-    vendor: Peak
-    homepage: https://github.com/peak/s5cmd
-    license: MIT
-    maintainer: Peak <packaging@peak.com>
-    description: |-
-      Very fast S3 and local filesystem execution tool. It comes with support
-      for a multitude of operations including tab completion and wildcard
-      support for files, which can be very handy for your object storage
-      workflow while working with large number of files.
-    formats:
-      - deb
-
 release:
   draft: true
+  github:
+    owner: diauweb
+    name: s5cmd
+
